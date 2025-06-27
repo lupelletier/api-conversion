@@ -43,4 +43,22 @@ describe('GET /tva', () => {
             error: 'Missing required parameters: ht and taux.'
         });
     });
+
+    it('should return 400 for non-numeric HT', async () => {
+        const response = await request(app)
+            .get('/tva?ht=abc&taux=20');
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+        error: 'Invalid input: HT must be a non-negative value.'
+    });
+});
+
+it('should return 400 for non-numeric tax rate', async () => {
+    const response = await request(app)
+        .get('/tva?ht=100&taux=abc');
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+        error: 'Invalid input: Tax rate must be a non-negative value.'
+    });
+});
 });

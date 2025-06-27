@@ -19,6 +19,7 @@ describe('GET /remise', () => {
             .get('/remise?prix=-100&pourcentage=10');
         
         expect(response.status).toBe(400);
+        expect(response.body).toEqual({ error: 'Invalid input: price cannot be negative' });
     });
 
     it('should return 400 for negative percentage', async () => {
@@ -26,6 +27,7 @@ describe('GET /remise', () => {
             .get('/remise?prix=100&pourcentage=-10');
         
         expect(response.status).toBe(400);
+        expect(response.body).toEqual({ error: 'Invalid input: discount percentage cannot be negative' });
     });
 
     it('should return 400 for missing parameters', async () => {
@@ -33,5 +35,6 @@ describe('GET /remise', () => {
             .get('/remise');
         
         expect(response.status).toBe(400);
+        expect(response.body).toEqual({ error: 'Invalid input' });
     });
 });

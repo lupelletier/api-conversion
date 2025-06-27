@@ -13,11 +13,7 @@ router.get('/', (req, res) => {
         const result = convertCurrency(from, to, numAmount);
         res.json(result);
     } catch (e) {
-        if (e.message === 'Invalid currency conversion.') {
-            res.status(400).json({ error: 'Invalid currency provided' });
-        } else {
-            res.status(400).json({ error: e.message });
-        }
+        res.status(400).json({ error: 'Invalid currency provided' });
     }
 });
 

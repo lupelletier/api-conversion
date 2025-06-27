@@ -47,4 +47,14 @@ describe('GET /convert', () => {
       error: 'Invalid currency provided',
     });
   });
+
+  it('should return 400 for missing required parameters', async () => {
+    const response = await request(app)
+      .get('/convert?from=EUR&amount=100'); // missing 'to'
+    
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+      error: 'Amount must be a positive number',
+    });
+  });
 });

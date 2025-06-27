@@ -14,4 +14,5 @@ export default {
   fakeTimers: {
     enableGlobally: true,
   },
+  transform: {},
 };
