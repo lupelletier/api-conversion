@@ -1,5 +1,7 @@
 import request from 'supertest';
 import app from '../../src/app.js';
+import { jest } from '@jest/globals';
+jest.useFakeTimers();
 
 describe('End-to-End Tests', () => {
   it('should convert currency and calculate TVA', async () => {

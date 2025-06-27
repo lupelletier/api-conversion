@@ -1,5 +1,7 @@
 import request from 'supertest';
 import app from '../../src/app.js';
+import { jest } from '@jest/globals';
+jest.useFakeTimers();
 
 describe('GET /convert', () => {
   it('should convert EUR to USD', async () => {
