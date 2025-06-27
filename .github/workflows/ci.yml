@@ -51,8 +51,8 @@ jobs:
       - name: Deploy to VPS
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} "
-            cd /path/to/your/app &&
+            cd /root/api-conversion &&
             git pull origin main &&
             npm install &&
-            pm2 restart app || pm2 start src/server.js --name app
+            pm2 restart api-conversion || pm2 start src/server.js --name api-conversion
           "
