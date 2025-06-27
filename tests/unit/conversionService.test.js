@@ -25,7 +25,7 @@ describe('Conversion Service', () => {
       from: 'USD',
       to: 'EUR',
       originalAmount: 110,
-      
+      convertedAmount: 100,
     });
   });
 

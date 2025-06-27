@@ -23,13 +23,13 @@ describe('TVA Service', () => {
         const ht = -100;
         const taux = 20;
 
-        expect(() => calculateTTC(ht, taux)).toThrow('Invalid amount');
+        expect(() => calculateTTC(ht, taux)).toThrow('HT and taux must be non-negative values.');
     });
 
     test('should throw error for negative taux', () => {
         const ht = 100;
         const taux = -20;
 
-        expect(() => calculateTTC(ht, taux)).toThrow('Invalid tax rate');
+        expect(() => calculateTTC(ht, taux)).toThrow('HT and taux must be non-negative values.');
     });
 });

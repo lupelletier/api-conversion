@@ -7,18 +7,17 @@ router.get('/', (req, res) => {
     const { from, to, amount } = req.query;
     const numAmount = Number(amount);
     if (!from || !to || isNaN(numAmount) || numAmount < 0) {
-        return res.status(400).json({ error: 'Invalid input' });
+        return res.status(400).json({ error: 'Amount must be a positive number' });
     }
     try {
-        const convertedAmount = convertCurrency(from, to, numAmount);
-        res.json({
-            from,
-            to,
-            originalAmount: numAmount,
-            convertedAmount
-        });
+        const result = convertCurrency(from, to, numAmount);
+        res.json(result);
     } catch (e) {
-        res.status(400).json({ error: e.message });
+        if (e.message === 'Invalid currency conversion.') {
+            res.status(400).json({ error: 'Invalid currency provided' });
+        } else {
+            res.status(400).json({ error: e.message });
+        }
     }
 });
 

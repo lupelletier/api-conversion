@@ -1,23 +1,24 @@
 export default function convertCurrency(from, to, amount) {
     const conversionRates = {
-        EUR: { USD: 1.1, GBP: 0.8 },
-        USD: { EUR: 0.909, GBP: 0.8 },
-        GBP: { EUR: 1.25, USD: 1.25 }
+        EUR: { USD: 1.1 },
+        USD: { EUR: 1 / 1.1, GBP: 0.8 },
+        GBP: { USD: 1 / 0.8 }
     };
 
     if (amount < 0) {
-        throw new Error("Amount must be a non-negative value.");
+        throw new Error("Amount must be a positive number");
     }
 
     if (!conversionRates[from] || !conversionRates[from][to]) {
         throw new Error("Invalid currency conversion.");
     }
 
-    const convertedAmount = amount * conversionRates[from][to];
+    let convertedAmount = amount * conversionRates[from][to];
+    convertedAmount = Math.round(convertedAmount * 100) / 100;
     return {
         from,
         to,
         originalAmount: amount,
-        convertedAmount: parseFloat(convertedAmount.toFixed(2))
+        convertedAmount
     };
-};
+}
