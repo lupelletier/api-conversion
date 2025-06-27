@@ -11,8 +11,7 @@ export default {
       statements: 80,
     },
   },
-  transform: {},
-    fakeTimers: {
+  fakeTimers: {
     enableGlobally: true,
   },
 };
