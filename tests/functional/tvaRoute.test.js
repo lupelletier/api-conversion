@@ -1,8 +1,5 @@
 import request from 'supertest';
 import app from '../../src/app.js';
-import { jest } from '@jest/globals';
-jest.useFakeTimers();
-
 
 describe('GET /tva', () => {
     it('should return the total amount including tax for valid input', async () => {
